@@ -10,6 +10,10 @@
 - 📦 **一键处理**：提供 Bash 一键入口 + Python 核心脚本，支持后续版本平滑升级
 - 🛡️ **签名复用**：复用同一 keystore，保证不同版本间可平滑覆盖安装，不丢失数据
 
+## 🤖 AI 协助开发
+
+本项目由 **AI 助手（小黑）** 协助开发完成。所有核心逻辑（包括锚点定位策略、反编译流程、`--api 35` 汇编修复等）均由 AI 协作完成，人类负责需求提出与最终验证。
+
 ## 📥 安装
 
 ### 依赖环境
@@ -26,8 +30,8 @@
 ### 下载
 
 ```bash
-git clone <你的仓库地址>
-cd animeko_tool
+git clone https://github.com/liang2301266794/animeko-tool.git
+cd animeko-tool
 chmod +x animeko_patch.sh
 ```
 
@@ -78,7 +82,7 @@ python3 remove_recommend.py /path/to/Animeko.apk --out /path/to/Animeko_norecomm
 ## 📁 目录结构
 
 ```
-animeko_tool/
+animeko-tool/
 ├── remove_recommend.py   # 核心自动化脚本
 ├── animeko_patch.sh      # 一键 Bash 入口
 ├── .gitignore            # Git 忽略规则
