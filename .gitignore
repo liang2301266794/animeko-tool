@@ -1,0 +1,21 @@
+# 临时工作目录
+work/
+
+# 输出产物
+*.apk
+*.apk.idsig
+
+# 签名密钥（不要上传！）
+*.jks
+*.keystore
+key.properties
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 系统文件
+.DS_Store
+Thumbs.db
