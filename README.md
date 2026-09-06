@@ -14,6 +14,16 @@
 
 本项目由 **AI 助手（小黑）** 协助开发完成。所有核心逻辑（包括锚点定位策略、反编译流程、`--api 35` 汇编修复等）均由 AI 协作完成，人类负责需求提出与最终验证。
 
+## 📸 效果预览
+
+原始界面（去除前，包含"相关推荐"和广告）：
+
+![去除前](screenshots/before.jpg)
+
+去除后（干净的界面，不再显示"相关推荐"）：
+
+![去除后](screenshots/after.jpg)
+
 ## 📥 安装
 
 ### 依赖环境
@@ -86,6 +96,9 @@ animeko-tool/
 ├── remove_recommend.py   # 核心自动化脚本
 ├── animeko_patch.sh      # 一键 Bash 入口
 ├── .gitignore            # Git 忽略规则
+├── screenshots/          # 效果对比截图
+│   ├── before.jpg        # 去除前（含相关推荐）
+│   └── after.jpg         # 去除后（干净界面）
 └── README.md             # 本说明
 ```
 
