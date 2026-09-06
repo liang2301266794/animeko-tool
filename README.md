@@ -35,7 +35,7 @@
 | smali     | 汇编 dex，需在 PATH 中                      |
 | zipalign  | 对齐 resources.arsc（Android 30+ 必需）     |
 | apksigner | APK 签名工具                                |
-| keystore  | 签名密钥（自行准备）                        |
+| keytool   | 自动生成签名密钥（JDK 自带，需在 PATH 中或用 KEYTOOL 指定） |
 
 ### 下载
 
@@ -46,9 +46,21 @@ chmod +x animeko_patch.sh
 ```
 
 ## 🚀 使用方法
+### 密钥策略（重要）
+首次运行脚本时，工具会自动处理签名密钥：
+1. **已有密钥**：如果你的脚本目录下有 `.jks` 文件，或者通过环境变量 `KS` 指定了密钥，工具会**自动复用**该密钥
+2. **没有密钥**：首次运行时，工具会用 `keytool` **自动生成**一个新的签名密钥（保存在脚本目录的 `modkey.jks`）
+3. **备份提醒**：生成密钥后请**务必备份**该 `.jks` 文件！后续处理新版 APK 需要复用同一密钥才能平滑覆盖安装
+
+> 💡 **提示**：你也可以自己生成密钥并指定路径：
+> ```bash
+> # 手动生成密钥（可选）
+> keytool -genkeypair -keystore mykey.jks -alias animeko -keyalg RSA -keysize 2048 -validity 36500
+> # 使用自己的密钥
+> KS=/path/to/mykey.jks KS_ALIAS=animeko KS_PASS=xxx ./animeko_patch.sh ...
+> ```
 
 ### 方式一：一键 Bash 入口（推荐）
-
 ```bash
 ./animeko_patch.sh /路径/新版Animeko.apk
 # 或指定输出路径
@@ -103,8 +115,8 @@ animeko-tool/
 ```
 
 ## ⚠️ 注意事项
-
 - **签名密钥请妥善备份**，不要上传到 GitHub！新版本需要复用同一密钥才能平滑覆盖安装
+- **自动生成的密钥**：首次运行脚本时会自动生成 `modkey.jks`（保存在脚本目录下），请务必备份！如果丢失密钥，后续将无法对已安装的应用执行覆盖安装（需先卸载）
 - 首次从"原版签名"切换到本工具的 key 时，需先卸载原版应用
 - 若新版 APK 改动了锚点字符串，工具会提示"未找到锚点"，届时需人工核对新版逻辑
 - 反编译较大 dex 耗时较长属正常现象，请耐心等待
